@@ -1,0 +1,12 @@
+---
+- hosts: redhat2
+  gather_facts: false 
+  user: yuan
+  become: yes
+
+  tasks:
+    - name: Change ownership off file
+      ansible.builtin.copy:
+        src: /opt/RHCE/bong
+        dest: /opt/RHCE/bong.bkp
+        remote_src: yes

@@ -1,0 +1,16 @@
+---
+- hosts: redhat2
+  user: yuan
+  become: yes
+
+  tasks:
+    - name : Check if the PermitRootLogin is enabled
+      shell: grep -i "^#PermitRootLogin no"  /etc/ssh/sshd_config
+      register: prl
+      ignore_errors: true
+
+    - name: Echo 
+      debug:
+        var: prl
+      #when: prl == "#PermitRootLogin prohibit-password"
+

@@ -1,0 +1,39 @@
+---
+- name: Configure BaseOS and AppStream repositories for RHEL9
+  hosts: redhat2
+  user: yuan
+  become: true
+
+  tasks:
+    - name: Ensure yum-utils is installed
+      yum:
+        name: yum-utils
+        state: present
+
+    - name: Create BaseOS repository configuration file
+      copy:
+        dest: /etc/yum.repos.d/BaseOS.repo
+        content: |
+          [BaseOS]
+          name=Red Hat Enterprise Linux 9 - BaseOS
+          baseurl=file:///mnt/BaseOS
+          enabled=1
+          gpgcheck=0
+          gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-release
+
+    - name: Create AppStream repository configuration file
+      copy:
+        dest: /etc/yum.repos.d/AppStream.repo
+        content: |
+          [AppStream]
+          name=Red Hat Enterprise Linux 9 - AppStream
+          baseurl=file:///mnt/AppStream
+          enabled=1
+          gpgcheck=0
+          gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-release
+
+    - name: Clear the yum cache
+      command: yum clean all
+
+    - name: Refresh the yum cache
+      command: yum makecache

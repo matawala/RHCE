@@ -1,0 +1,29 @@
+---
+- hosts: redhat2
+  user: yuan
+  become: yes
+
+  tasks:
+    #- name: Add port 8888 on firewalld
+    #  firewalld:
+    #    port: 8888/tcp
+    #    permanent: yes
+    #    state: enabled
+    #    immediate: yes
+
+    - name: Allow TCP port 8080
+      firewalld:
+        port: 8080/tcp
+        permanent: yes
+        state: enabled
+        immediate: yes
+
+    - name: Setup the port forward
+      firewalld:
+        permanent: yes
+        immediate: yes
+        rich_rule: "{{ item }}"
+        state: enabled
+        zone: public
+      with_items:
+        - 'rule forward-port port=8080 protocol=tcp to-port=80 family=ipv4'

@@ -1,0 +1,25 @@
+---
+- name: Allow TCP port 888 through firewalld
+  hosts: redhat2
+  user: yuan
+  become: yes
+  tasks:
+    - name: Ensure firewalld is installed
+      yum:
+        name: firewalld
+        state: present
+
+    - name: Ensure firewalld is running and enabled
+      service:
+        name: firewalld
+        state: started
+        enabled: yes
+
+    - name: "Allow TCP port"
+      ansible.builtin.firewalld:
+        state: enabled
+        immediate: yes
+
+#    - name: Reload firewalld to apply changes
+#      firewalld:
+#        state: reloaded

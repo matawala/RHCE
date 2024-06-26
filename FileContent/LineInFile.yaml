@@ -1,0 +1,18 @@
+---
+- hosts: redhat2
+  gather_facts: false 
+  user: yuan
+  become: yes
+
+  tasks:
+    - name: Modify file
+      ansible.builtin.lineinfile:
+        path: /opt/RHCE/selinux
+        regex: '^SELINUX'
+        line: SELINUX=enforcing
+
+    - name: Remove content starting with ABSENT
+      ansible.builtin.lineinfile:
+        path: /opt/RHCE/selinux
+        regex: '^ABSENT'
+        state: absent

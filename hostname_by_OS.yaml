@@ -1,0 +1,17 @@
+---
+- hosts: all
+  user: yuan
+  become: yes
+
+  tasks:
+    - name: Change hostname based on the OS
+      command: hostnamectl set-hostname {{ ansible_distribution }}
+      when:
+        #"ansible_distribution == 'CentOS' and ansible_hostname == 'centos' "
+        - ansible_distribution == 'CentOS'
+        - ansible_hostname == 'centos'
+
+    - name: Print hostname
+      debug:
+        msg: "My hostname is {{ ansible_hostname }}"
+

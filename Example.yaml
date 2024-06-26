@@ -1,0 +1,9 @@
+---
+- hosts: redhat2
+  user: yuan
+  become: yes
+
+  tasks:
+    - name: Print machine hostname
+      debug:
+        msg: "Hostname: {{ ansible_hostname}}"
