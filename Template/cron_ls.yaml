@@ -1,0 +1,13 @@
+---
+- hosts: redhat2
+  gather_facts: false
+  user: yuan
+  become: yes
+
+  tasks:
+    - name: "Run script to ls /opt"
+      ansible.builtin.cron:  
+        name: "Run LS on /opt FS"
+        hour: 16
+        minute: 52
+        job: "ls -lt /opt"

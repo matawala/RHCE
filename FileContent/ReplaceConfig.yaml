@@ -1,0 +1,14 @@
+---
+- hosts: redhat2
+  gather_facts: false
+  user: yuan
+  become: yes
+
+  tasks:
+    - name: Replace after a keyword
+      ansible.builtin.lineinfile:
+        path: /opt/RHCE/httpd.conf
+        regexp: '^Listen'
+        insertafter: '^Listen'
+        line: 'Listen 8080'
+        backup: yes

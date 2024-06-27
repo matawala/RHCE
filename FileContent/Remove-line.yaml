@@ -1,0 +1,12 @@
+---
+- hosts: redhat2
+  gather_facts: false
+  user: yuan
+  become: yes
+
+  tasks:
+    - name: Remove line start with
+      lineinfile:
+        path: /opt/RHCE/httpd.conf
+        regex: '^Listen 8080'
+        state: absent

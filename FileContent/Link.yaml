@@ -1,0 +1,12 @@
+---
+- hosts: redhat2
+  gather_facts: false
+  user: yuan
+  become: yes
+
+  tasks:
+    - name: Create link
+      file:
+        src: /home/bong/bong.txt
+        dest: /opt/RHCE/bong.lnk
+        state: link

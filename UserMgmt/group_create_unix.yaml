@@ -1,0 +1,13 @@
+---
+- hosts: redhat2
+  gather_facts: false
+  user: yuan
+  become: yes
+
+  tasks:
+    - name: Create Unix group
+      group:
+        name: unix
+        state: present
+        gid: 2001
+      

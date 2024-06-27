@@ -1,0 +1,14 @@
+---
+- hosts: redhat2
+  gather_facts: false
+  user: yuan
+  become: yes
+
+  tasks:
+    - name: Create user jsph in unix group
+      user:
+        name: jsph
+        state: present
+        group: unix
+        uid: 503
+        password: "$6$salt$xdLuw21n.5WciQUUpHTTPfR6QwS..Z1Q/4xGfiyYa51WSQktzSXYXSk2zBp.Is5r9WiXrGqRmHpEG0iG0HaSk."

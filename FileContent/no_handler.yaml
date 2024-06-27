@@ -1,0 +1,19 @@
+---
+- hosts: redhat2
+  gather_facts: false 
+  user: yuan
+  become: yes
+
+  tasks:
+    - name: Change ownership off file
+      ansible.builtin.copy:
+        src: /opt/RHCE/httpd.conf.bkp
+        dest: /tmp/httpd.conf
+        remote_src: yes
+      notify:
+      - Handle me
+
+    - name: Handle me
+      debug:
+        msg: "No Handled Master"
+

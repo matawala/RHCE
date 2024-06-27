@@ -1,0 +1,20 @@
+---
+- hosts: redhat2
+  gather_facts: false
+  user: yuan
+  become: yes
+
+  tasks:
+    - name: Create user kads in unix group
+      user:
+        name: kads
+        state: present
+        group: unix
+        uid: 501
+      
+    - name: Create user markgil in unix group
+      user:
+        name: markgil
+        state: present
+        group: unix
+        uid: 502

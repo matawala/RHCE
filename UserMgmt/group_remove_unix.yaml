@@ -1,0 +1,13 @@
+---
+- hosts: redhat2
+  gather_facts: false
+  user: yuan
+  become: yes
+
+  tasks:
+    - name: Remove Unix group
+      group:
+        name: unix
+        state: absent
+        gid: 2001
+      
