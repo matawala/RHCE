@@ -1,0 +1,31 @@
+---
+- name: Log in as root with password
+#  hosts: asus1
+ # become_user: root
+  #become: yes
+  become_pass: root
+
+   ansible_host: 192.168.56.106
+   ansible_user: root
+   ansible_ssh_pass: root
+   ansible_become_pass: root
+
+  
+  vars:
+    new_user: "elma"
+  
+  tasks:
+    - name: Ensure we are logged in as root
+      command: whoami
+      register: login_check
+
+    - name: Display login user
+      debug:
+        msg: "Logged in as {{ login_check.stdout }}"
+
+    - name: "Add the user {{ new_user }} with a specific uid"
+      ansible.builtin.user:
+        name: "{{ new_user }}"
+        comment: "{{ new_user }}"
+        uid: 1040
+

@@ -1,7 +1,7 @@
 Role Name
 =========
 
-A brief description of the role goes here.
+Update the motd on the destination server using the motd.j2 template
 
 Requirements
 ------------
