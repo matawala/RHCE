@@ -1,0 +1,21 @@
+### ansible-playbook LoginAsYuanBecomeAsRoot.yaml -k -K
+---
+- hosts: redhat2
+  gather_facts: false
+  user: yuan
+  become_user: root
+  become_method: su
+  become: yes
+
+  tasks:
+    - name: Login as Yuan and Switch as root
+      debug:
+        msg: "{{ ansible_user }}"
+
+    - name: Run the whoami command
+      command: 'whoami'
+      register: wmi
+
+    - name: Display the result of wmi
+      debug:
+        var: wmi.stdout

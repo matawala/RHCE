@@ -1,0 +1,42 @@
+---
+# tasks file for httpd
+- name: Install Package
+  ansible.builtin.yum:
+    name:
+      - tmux
+      - zip
+      - httpd
+    state: present 
+
+- name: Copy the index.html template
+  vars:
+    hostname: "REDHAT2.MATAWALA.COM"
+  template:
+    src: templates/index.html.j2
+    dest: /var/www/html/index.html
+
+- name: Start the httpd Service
+  service:
+    name: httpd
+    state: started
+
+- name: Enable httpd in firewalld
+  firewalld:
+    service: http
+    state: enabled
+    immediate: true
+
+- name: Enable Port 8080 in firewalld
+  firewalld:
+    port: 8080/tcp
+    state: enabled
+    immediate: true
+
+- name: Add firewall rule to forward port 443 to 80 in firewalld
+  firewalld:
+    state: enabled
+    immediate: true
+    rich_rule: rule family=ipv4 forward-port port=443 protocol=tcp to-port=80
+
+
+

@@ -1,0 +1,5 @@
+Hostname: {{ ansible_hostname }}
+IP Address:
+Operating System :
+Kernel Version: {{ ansible_kernel }}
+CPU : 

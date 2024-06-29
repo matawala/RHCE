@@ -1,0 +1,15 @@
+---
+- hosts: redhat2
+  user: yuan
+  gather_facts: false
+  become: yes
+
+  tasks:
+    - name: Install packages
+      yum:
+        name: "{{ my_pkg }}"
+        state: present
+      vars:
+        my_pkg:
+          - tmux
+          - zip

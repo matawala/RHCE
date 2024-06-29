@@ -1,0 +1,6 @@
+---
+- name: Execute the motd role via playbook
+  hosts: redhat2
+
+  roles:
+    - role: motd

@@ -1,0 +1,13 @@
+---
+- hosts: redhat2
+  gather_facts: false
+  user: yuan
+  become: yes
+
+  tasks:
+    - name: Echo the var in CLI
+      debug:
+        msg: "My name is {{ my_name }}"
+
+# Try this by running below command:
+# ansible-playbook -e "my_name=Bong" Vars_CLI.yaml

@@ -1,0 +1,18 @@
+---
+- hosts: redhat2
+  user: yuri
+  become_user: root
+  become: yes
+
+  tasks:
+    - name: Login as Yuri and Switch as root
+      debug:
+        msg: "{{ ansible_user }}"
+
+    - name: Run the whoami command
+      command: 'whoami'
+      register: wmi
+
+    - name: Display the result of wmi
+      debug:
+        var: wmi.stdout

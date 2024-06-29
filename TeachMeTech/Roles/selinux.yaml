@@ -1,0 +1,11 @@
+- hosts: redhat2
+  user: yuan
+  become_user: root
+  become_method: su
+  become: yes
+
+  vars:
+    selinux_policy: targeted
+    selinux_state: enforcing
+  roles:
+    - rhel-system-roles.selinux

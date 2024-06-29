@@ -2,10 +2,6 @@
 echo "[defaults]
 inventory=`pwd`/hosts
 [privilege_escalation]
-become=true
-become_method=sudo
-become_user=root
-#become_ask_pass=false
 [persistent_connection]
 [connection]
 [colors]

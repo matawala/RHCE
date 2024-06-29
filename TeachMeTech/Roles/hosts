@@ -1,0 +1,5 @@
+[CentOS]
+centos1 ansible_host=192.168.56.102
+
+[redhat]
+redhat2 ansible_host=192.168.56.106

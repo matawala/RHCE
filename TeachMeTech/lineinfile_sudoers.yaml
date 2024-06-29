@@ -1,0 +1,18 @@
+---
+- hosts: redhat2
+  gather_facts: false
+
+  tasks:
+    - name: Put Entry in sudoers file
+      ansible.builtin.lineinfile:
+        path: /etc/sudoers
+        regexp: "yuri"
+        state: present
+        line: "yuan ALL:(ALL) NOPASSWD: ALL"
+
+    - name: Put Entry in sudoers file after a keyword
+      ansible.builtin.lineinfile:
+        path: /etc/sudoers
+        insertafter: "yuan"
+        state: present
+        line: "yuri ALL:(ALL) NOPASSWD: ALL"

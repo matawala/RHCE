@@ -1,0 +1,9 @@
+---
+# tasks file for localrepo
+- name: Copy repo template onto the system
+  template:
+    src: templates/local_iso.repo.j2
+    dest: /etc/yum.repos.d/local_iso.repo
+    owner: root
+    group: root
+    mode: 0444

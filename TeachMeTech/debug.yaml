@@ -1,0 +1,8 @@
+---
+- hosts: redhat2
+  gather_facts: false
+
+  tasks:
+    - name: Debugger task
+      debug:
+        msg: "{{ ansible_user }}"

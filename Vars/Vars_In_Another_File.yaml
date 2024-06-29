@@ -1,0 +1,18 @@
+---
+- hosts: redhat2
+  gather_facts: false
+  user: yuan
+  become: yes
+
+  vars_files:
+    - myvars.yaml
+  #vars:
+  #  my_wife: "Rhea"
+
+  tasks:
+    - name: Print the name of my wife
+      debug:
+        msg: "The name of my wife is {{ my_wife }}"
+
+# Try this by running below command:
+# ansible-playbook Vars_Inside_A_File.yaml

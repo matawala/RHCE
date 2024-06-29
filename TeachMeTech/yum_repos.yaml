@@ -1,0 +1,26 @@
+---
+- hosts: redhat2
+  gather_facts: no
+  user: yuan
+  become_user: root
+  become_method: su
+  become: yes
+
+  tasks:
+    - name: Create a BaseOS Repository
+      yum_repository:
+        name: BaseOS
+        file: Ansible_BaseOS.repo
+        description: "BaseOS Repository"
+        baseurl: /mnt/rhel9_iso.img/BaseOS
+        enabled: yes
+        gpgcheck: false
+
+    - name: Create a AppStream Repository
+      yum_repository:
+        name: AppStream
+        file: /etc/yum.repos.d/Ansible_AppStream.repo
+        description: "AppStream Repository"
+        baseurl: /mnt/rhel9_iso.img/AppStream
+        enabled: yes
+        gpgcheck: false

@@ -1,0 +1,25 @@
+---
+- hosts: redhat2
+  user: yuan
+  become: yes
+
+  vars:
+    mysql_user: "matawala"
+    mysql_pass: "P@ssw0rd123"
+    mysql_ipad: "192.168.0.69"
+    mysql_port: "6969"  
+
+  tasks:
+    - template:
+        src: template/id.txt.j2
+        dest: /etc/DB.info
+        owner: root
+        group: root
+        mode: 0644
+
+
+# User        : {{ mysql_user }}
+# Password    : {{ mysql_pass }}
+# Server IP   : {{ mysql_ipad }}
+# Server Port : {{ mysql_port }}
+

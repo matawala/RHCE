@@ -1,0 +1,10 @@
+---
+- name: This is a httpd role
+  hosts: redhat2
+  gather_facts: false
+  user: yuan
+  become_user: root
+  become_method: su
+  
+  roles:
+    - httpd
