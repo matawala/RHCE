@@ -1,5 +1,8 @@
+======== INVENTORY REPORT v1.1 ===========
+
 Hostname: {{ ansible_hostname }}
 IP Address:
 Operating System :
 Kernel Version: {{ ansible_kernel }}
 CPU : 
+XXX : {{ ansible_xxx | default('NONE') }}

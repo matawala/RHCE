@@ -1,0 +1,24 @@
+---
+- hosts: all
+  user: root
+  become: yes
+  become_method: su
+  #gather_facts: false
+
+  tasks:
+    - name: Create Group File under /tmp FS
+      ansible.builtin.file:
+        path: /tmp/Group.txt
+        state: touch
+
+    - name: Put a content incase the machine in group ControlNode
+      ansible.builtin.lineinfile:
+        path: /tmp/Group.txt
+        line: ControlNode
+      when: inventory_hostname in groups['ControlNode']
+
+    - name: Put a content incase the machine in group ManagedNodes
+      ansible.builtin.lineinfile:
+        path: /tmp/Group.txt
+        line: ManagedNodes
+      when: inventory_hostname in groups['ManagedNodes']

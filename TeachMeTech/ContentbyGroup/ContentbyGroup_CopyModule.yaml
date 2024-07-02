@@ -1,0 +1,19 @@
+---
+- hosts: all
+  user: root
+  become: yes
+  become_method: su
+  #gather_facts: false
+
+  tasks:
+    - name: Put a content incase the machine in group ControlNode
+      copy:
+        dest: /tmp/Group.txt
+        content: ControlNode
+      when: inventory_hostname in groups['ControlNode']
+
+    - name: Put a content incase the machine in group ManagedNodes
+      copy:
+        dest: /tmp/Group.txt
+        content: ManagedNodes
+      when: inventory_hostname in groups['ManagedNodes']

@@ -1,0 +1,6 @@
+---
+- name: Clear all entries in sudoers file with the entry
+  lineinfile:
+    path: /etc/sudoers
+    regexp: '^Insert'
+    state: absent

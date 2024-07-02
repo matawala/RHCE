@@ -1,0 +1,6 @@
+[ControlNode]
+redhat3 ansible_host=192.168.56.107
+
+[ManagedNodes]
+asus1	ansible_host=192.168.56.102
+redhat2 ansible_host=192.168.56.106

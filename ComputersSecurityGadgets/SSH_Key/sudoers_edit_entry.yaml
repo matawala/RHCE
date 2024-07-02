@@ -1,0 +1,7 @@
+---
+- name: Edit entry on sudoers file after a keyword 
+  lineinfile:
+    path: /etc/sudoers
+    regexp: '^kads'
+    #insertafter: '^root'
+    line: 'yuan  ALL=(ALL)    NOPASSWD: ALL'

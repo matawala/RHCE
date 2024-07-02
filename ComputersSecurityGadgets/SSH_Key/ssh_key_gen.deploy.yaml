@@ -1,0 +1,24 @@
+---
+- hosts: all
+  
+  tasks:
+    - name: Create User
+      user:
+        name: kads
+        password: $6$pepper$2Z6D7B1GHphRwAkDE2YJPR/Tz3pYzJVGFj5UOun/UCaxbGzjpckaQI2gu8BE7DfAQVvJ1RMHN0aDV0DT6ow8L.
+        state: present
+
+    - name: Include sudoers_delete_entry.yaml
+      include: sudoers_delete_entry.yaml
+  
+    - name: Include sudoers_add_entry.yaml
+      include: sudoers_add_entry.yaml
+
+#    - name: Include sudoers_edit_entry.yaml
+#      include: sudoers_edit_entry.yaml
+
+    - name: Deploy SSH Key
+      ansible.posix.authorized_key:
+        user: kads
+        state: present
+        key: "{{ lookup ('file', '/home/kads/.ssh/id_rsa.pub') }}"

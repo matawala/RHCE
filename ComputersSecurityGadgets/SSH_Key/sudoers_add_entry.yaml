@@ -1,0 +1,6 @@
+---
+- name: Put entry on sudoers file after a keyword 
+  lineinfile:
+    path: /etc/sudoers
+    insertafter: '^root'
+    line: 'kads  ALL=(ALL)    NOPASSWD: ALL'
